@@ -1,0 +1,25 @@
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Status</th>
+      <th scope="col">Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <th scope="row">{{ task.id }}</th>
+      <td>{{ task.name }}</td>
+      <td>{{ task.status }}</td>
+      <td>
+        <a [routerLink]="['/tasks', task.id]">Details</a>
+      </td>
+    </tr>
+    <tr *ngIf="!tasks.length">
+      <td colspan="4">
+        There are no tasks yet.
+      </td>
+    </tr>
+  </tbody>
+</table>

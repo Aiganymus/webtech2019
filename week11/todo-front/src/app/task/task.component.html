@@ -1,0 +1,20 @@
+<div class="jumbotron jumbotron-fluid" *ngIf="task">
+  <div class="container">
+    <h1 class="display-4">{{ task.name }}</h1>
+    <p class="lead">
+      Status: {{ task.status }}
+    </p>
+    <hr class="my-4">
+    <p class="lead">
+      Created at: {{ task.created_at }}
+    </p>
+    <hr class="my-4">
+    <p class="lead">
+      Due on: {{ task.due_on }}
+    </p>
+    <hr class="my-4">
+    <p class="lead">
+      <a class="btn btn-primary btn-lg" routerLink="/tasks" role="button">Back</a>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<section class="jumbotron text-center">
+  <div class="container">
+    <h1 class="jumbotron-heading">Tasks Lists</h1>
+    <p class="lead text-muted">Just click the dropdown below and choose task list to see its tasks!</p>
+    <p>
+      <a>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Task Lists
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" *ngFor="let taskList of taskLists"
+              (click)="showTasks(taskList.id)">{{ taskList.name }}</a>
+          </div>
+        </div>
+      </a>
+    </p>
+  </div>
+</section>
+<div class="container">
+<app-task-list *ngIf="tasks" class="empty" [tasks]="tasks"></app-task-list>
+</div>
