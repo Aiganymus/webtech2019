@@ -18,4 +18,17 @@ export class TaskService {
   getTask(id: string): Observable<Task> {
     return this.httpClient.get<Task>(`${this.host}/tasks/${id}`);
   }
+
+  updateTask(id: string, task: Task) {
+    return this.httpClient.put(`${this.host}/tasks/${id}`, task);
+  }
+
+  createTask(task: Task) {
+    return this.httpClient.post(`${this.host}/tasks`, task);
+  }
+
+  deleteTask(id: string) {
+    return this.httpClient.delete(`${this.host}/tasks/${id}`);
+  }
+
 }

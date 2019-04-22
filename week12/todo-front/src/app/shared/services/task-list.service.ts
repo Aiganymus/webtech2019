@@ -13,10 +13,22 @@ export class TaskListService {
   constructor(private httpClient: HttpClient) { }
 
   getTaskList(id: string): Observable<TaskList> {
-    return this.httpClient.get<TaskList>(`${this.host}/${id}/`);
+    return this.httpClient.get<TaskList>(`${this.host}/${id}`);
   }
 
   getTaskLists(): Observable<TaskList[]> {
     return this.httpClient.get<TaskList[]>(this.host);
+  }
+
+  updateTaskList(taskList: TaskList) {
+    return this.httpClient.put(`${this.host}/${taskList.id}`, taskList);
+  }
+
+  createTaskList(taskList: TaskList) {
+    return this.httpClient.post(`${this.host}`, taskList);
+  }
+
+  deleteTaskList(id: string) {
+    return this.httpClient.delete(`${this.host}/${id}`);
   }
 }

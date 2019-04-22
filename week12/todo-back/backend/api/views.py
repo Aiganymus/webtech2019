@@ -13,13 +13,23 @@ def task_list(request):
         return JsonResponse(serializer.data, safe=False, status=200)
     elif request.method == 'POST':
         body = json.loads(request.body)
-        serializer = TaskListSerializer(body)
+        serializer = TaskListSerializer(data=body)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors)
     return JsonResponse({'error': 'bad request'})
 
+@csrf_exempt
+def task(request):
+    if request.method == 'POST':
+        body = json.loads(request.body)
+        serializer = TaskModelSerializer(data=body)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data)
+        return JsonResponse(serializer.errors)
+    return JsonResponse({'error': 'bad request'})
 
 @csrf_exempt
 def task_list_detail(request, pk):
@@ -39,8 +49,9 @@ def task_list_detail(request, pk):
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors)
     elif request.method == 'DELETE':
+        task_list_id = task_list.id
         task_list.delete()
-        return JsonResponse({})
+        return JsonResponse({'success': task_list_id})
     return JsonResponse({'error': 'bad request'})
 
 
@@ -73,6 +84,7 @@ def task_detail(request, pk):
             return JsonResponse(serializer.data)
         return JsonResponse(serializer.errors)
     elif request.method == 'DELETE':
+        task_id = task.id;
         task.delete()
-        return JsonResponse({})
+        return JsonResponse({'success': task_id})
     return JsonResponse({'error': 'bad request'})

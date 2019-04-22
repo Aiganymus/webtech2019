@@ -1,3 +1,16 @@
 .empty {
   text-align: center;
 }
+
+.delete {
+  margin-right: 2rem;
+}
+
+.add {
+  margin-left: 2rem;
+}
+
+a {
+  display: flex;
+  justify-content: center;
+}

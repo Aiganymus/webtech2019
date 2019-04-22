@@ -12,6 +12,7 @@ import { TaskService } from '../shared/services/task.service';
 export class MainComponent implements OnInit {
   taskLists: TaskList[];
   tasks: Task[];
+  taskListId: string;
 
   constructor(private taskListService: TaskListService,
               private taskService: TaskService) { }
@@ -25,11 +26,22 @@ export class MainComponent implements OnInit {
   }
 
   showTasks(id: string) {
+    this.taskListId = id;
     this.taskService.getTasks(id).subscribe(
       res => {
         this.tasks = res;
       }
     );
+  }
+
+  deleteTaskList() {
+    this.taskListService.deleteTaskList(this.taskListId)
+        .subscribe(
+          res => {
+            console.log(res);
+            window.location.reload();
+          }
+        );
   }
 
 }

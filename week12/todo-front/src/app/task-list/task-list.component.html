@@ -5,6 +5,7 @@
       <th scope="col">Name</th>
       <th scope="col">Status</th>
       <th scope="col">Details</th>
+      <th scope="col">Edit</th>
     </tr>
   </thead>
   <tbody>
@@ -15,11 +16,15 @@
       <td>
         <a [routerLink]="['/tasks', task.id]">Details</a>
       </td>
+      <td>
+        <a [routerLink]="['/tasks/edit', task.id]">Edit</a>
+      </td>
     </tr>
     <tr *ngIf="!tasks.length">
-      <td colspan="4">
+      <td colspan="5">
         There are no tasks yet.
       </td>
     </tr>
   </tbody>
 </table>
+<button class="btn btn-primary" routerLink="/tasks/create">Add new task</button>

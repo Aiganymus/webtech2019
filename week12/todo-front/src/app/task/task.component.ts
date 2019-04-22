@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TaskService } from '../shared/services/task.service';
 import { Task } from '../shared/types/task.type';
 import * as moment from 'moment';
@@ -13,7 +13,8 @@ export class TaskComponent implements OnInit {
   task: Task;
 
   constructor(private route: ActivatedRoute,
-              private taskService: TaskService) { }
+              private taskService: TaskService,
+              private router: Router) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -27,4 +28,16 @@ export class TaskComponent implements OnInit {
     });
   }
 
+  deleteTask(id: string) {
+    this.taskService.deleteTask(id)
+        .subscribe(
+          res => {
+            console.log(res);
+            this.router.navigateByUrl('/tasks');
+          },
+          err => {
+            console.error(err);
+          }
+        );
+  }
 }
