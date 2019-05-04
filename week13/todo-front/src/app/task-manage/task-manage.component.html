@@ -1,0 +1,31 @@
+<div class="container">
+  <form *ngIf="taskForm" [formGroup]="taskForm">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" id="name" placeholder="Enter name" formControlName="name">
+      <div *ngIf="submitted && taskForm.controls['name'].invalid" class="invalid-feedback">
+        Please enter a name.
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="status">Status</label>
+      <input type="text" class="form-control" id="status" placeholder="Enter status" formControlName="status">
+      <div *ngIf="submitted && taskForm.controls['status'].invalid" class="invalid-feedback">
+        Please enter a status.
+      </div>
+    </div>
+    <div class="form-group">
+      <label>
+        Date Time:
+        <input [owlDateTimeTrigger]="dt" [owlDateTime]="dt" formControlName="dueOn">
+        <owl-date-time #dt></owl-date-time>
+    </label>
+    </div>
+    <div class="form-group">
+      <select class="custom-select" class="form-control" id="task-list" formControlName="task_list">
+        <option *ngFor="let taskList of taskLists" [value]="taskList.id">{{ taskList.name }}</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="submit()">Submit</button>
+  </form>
+</div>
